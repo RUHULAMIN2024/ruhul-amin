@@ -1,0 +1,45 @@
+[
+  {
+    "key": 1,
+    "title": "Forum Website Using MERN Stack",
+    "img": "https://img.freepik.com/free-vector/tablet-with-users-communicating-speech-bubbles-global-internet-communication-social-media-network-technology-chat-message-forum-concept-vector-isolated-illustration_335657-1987.jpg?t=st=1719587439~exp=1719591039~hmac=ffbcd5177d566139ac50ba490c294e95a47356a20c97ce5eab6953f9fa298149&w=900",
+    "description": "Technologies: HTML, CSS, JavaScript, Tailwind CSS, React.js, Node.js, Express.js, MongoDB.",
+    "live": "https://assignment12-60ec2.web.app",
+    "client": "https://github.com/RUHULAMIN2024/A12-client",
+    "server": "https://github.com/RUHULAMIN2024/A12-server"
+  },
+  {
+    "key": 2,
+    "title": "Restaurant Management Website",
+    "img": "https://img.freepik.com/free-photo/classic-luxury-style-restaurant-with-tables-chairs_140725-9389.jpg?t=st=1719587319~exp=1719590919~hmac=e22b379a81049198ece0656c46cbea5e0a419ae2fd68e233037481743ef64119&w=740",
+    "description": "Technologies: HTML, CSS, JavaScript, Tailwind CSS, React.js, Node.js, Express.js, MongoDB.",
+    "live": "https://flavor-fusion-11.surge.sh",
+    "client": "https://github.com/RUHULAMIN2024/A11-client",
+    "server": "https://github.com/RUHULAMIN2024/A11-server"
+  },
+  {
+    "key": 3,
+    "title": "Tourism Management Website",
+    "img": "https://cdn.pixabay.com/photo/2016/08/16/17/12/skyscrapers-1598418_640.jpg",
+    "description": "Technologies: HTML, CSS, JavaScript, Tailwind CSS, React.js, Node.js, Express.js, MongoDB.",
+    "live": "https://my-assignment-10.surge.sh",
+    "client": "https://github.com/RUHULAMIN2024/a10-client",
+    "server": "https://github.com/RUHULAMIN2024/a10-server"
+  },
+  {
+    "key": 4,
+    "title": "Real Estate Website",
+    "img": "https://img.freepik.com/free-photo/amazing-aerial-shot-singapore-cityscape-with-lots-skyscrapers_181624-18618.jpg?t=st=1719586782~exp=1719590382~hmac=7394b9bd679bb98a75380d80ca0e2905bea1a6e43fef610d61a5ed33719de704&w=900",
+    "description": "Technologies: HTML, CSS, JavaScript, Tailwind CSS, React.js",
+    "live": "https://my-assignment-9.surge.sh",
+    "client": "https://github.com/RUHULAMIN2024/A9"
+  },
+  {
+    "key": 5,
+    "title": "Book Review Website",
+    "img": "https://cdn.pixabay.com/photo/2021/03/02/01/07/cyberpunk-6061251_640.jpg",
+    "description": "Technologies: HTML, CSS, JavaScript, Tailwind CSS, React.js ",
+    "live": "https://my-assignment-08.surge.sh",
+    "client": "https://github.com/RUHULAMIN2024/A8"
+  }
+]
