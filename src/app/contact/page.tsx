@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
-const API_URL = "http://localhost:5000/api/messages";
+const API_URL = "https://ruhul-amin-server.vercel.app/api/messages";
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({

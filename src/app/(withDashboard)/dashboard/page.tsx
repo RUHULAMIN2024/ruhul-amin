@@ -1,9 +1,9 @@
 import Container from "@/components/Container";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
-const sesion = await getServerSession(authOptions);
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const sesion = await getServerSession(authOptions);
   const placeholder =
     "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-picture-placeholder&psig=AOvVaw34dwBn2dGZ8R1R1DY3vXqT&ust=1739353791116000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDGyZSsu4sDFQAAAAAdAAAAABAE";
   return (

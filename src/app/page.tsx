@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const HomePage = async () => {
-  const res = await fetch("http://localhost:5000/api/projects", {
+  const res = await fetch("https://ruhul-amin-server.vercel.app/api/projects", {
     next: { revalidate: 5 },
   });
 

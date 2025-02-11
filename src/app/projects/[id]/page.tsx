@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +31,9 @@ const ProjectDetails = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${id}`);
+      const res = await fetch(
+        `https://ruhul-amin-server.vercel.app/api/projects/${id}`
+      );
       const data = await res.json();
       setProject(data?.data);
     } catch (err) {

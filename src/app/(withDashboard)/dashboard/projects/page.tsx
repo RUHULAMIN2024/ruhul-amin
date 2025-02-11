@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
-const API_URL = "http://localhost:5000/api/projects";
+const API_URL = "https://ruhul-amin-server.vercel.app/api/projects";
 
 // Define the Project type
 interface Project {

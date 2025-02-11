@@ -42,7 +42,7 @@ const Blogs: React.FC = () => {
 
   // Fetch Blogs from API
   useEffect(() => {
-    fetch("http://localhost:5000/api/blogs")
+    fetch("https://ruhul-amin-server.vercel.app/api/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data.data || []))
       .catch((error) => console.error("Error fetching blogs:", error));
@@ -50,11 +50,14 @@ const Blogs: React.FC = () => {
 
   // Add New Blog
   const addBlog = async () => {
-    const response = await fetch("http://localhost:5000/api/blogs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBlog),
-    });
+    const response = await fetch(
+      "https://ruhul-amin-server.vercel.app/api/blogs",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBlog),
+      }
+    );
 
     const data = await response.json();
     if (data.success) {
@@ -70,7 +73,7 @@ const Blogs: React.FC = () => {
   const updateBlog = async () => {
     if (!editingBlog) return;
     const response = await fetch(
-      `http://localhost:5000/api/blogs/${editingBlog._id}`,
+      `https://ruhul-amin-server.vercel.app/api/blogs/${editingBlog._id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -95,9 +98,12 @@ const Blogs: React.FC = () => {
 
   // Delete Blog
   const deleteBlog = async (id: string) => {
-    const response = await fetch(`http://localhost:5000/api/blogs/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://ruhul-amin-server.vercel.app/api/blogs/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     const data = await response.json();
     if (data.success) {

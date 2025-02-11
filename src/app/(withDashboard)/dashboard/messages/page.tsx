@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
-const API_URL = "http://localhost:5000/api/messages";
+const API_URL = "https://ruhul-amin-server.vercel.app/api/messages";
 
 // Message type definition
 type Message = {

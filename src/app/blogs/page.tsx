@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Blogs() {
-  const res = await fetch("http://localhost:5000/api/blogs");
+  const res = await fetch("https://ruhul-amin-server.vercel.app/api/blogs");
   const blogs = await res.json();
   return (
     <Container>
