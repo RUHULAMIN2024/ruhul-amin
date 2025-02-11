@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 // Define Blog Type
 interface Blog {
@@ -57,6 +58,8 @@ const Blogs: React.FC = () => {
 
     const data = await response.json();
     if (data.success) {
+      toast("blog added succesfully");
+
       setBlogs([...blogs, { _id: data.data.insertedId, ...newBlog }]);
       setNewBlog({ title: "", content: "", category: "", image: "" });
       setIsModalOpen(false);
@@ -77,6 +80,8 @@ const Blogs: React.FC = () => {
 
     const data = await response.json();
     if (data.success) {
+      toast("blog updated succesfully");
+
       setBlogs(
         blogs.map((blog) =>
           blog._id === editingBlog._id ? { ...blog, ...newBlog } : blog
@@ -96,6 +101,8 @@ const Blogs: React.FC = () => {
 
     const data = await response.json();
     if (data.success) {
+      toast("blog deleted succesfully");
+
       setBlogs(blogs.filter((blog) => blog._id !== id));
     }
   };

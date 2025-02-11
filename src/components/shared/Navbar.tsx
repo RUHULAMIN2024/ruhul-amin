@@ -5,7 +5,7 @@ import Container from "../Container";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
-type UserProps = {
+export type UserProps = {
   user?: {
     name?: string | null | undefined;
     email?: string | null | undefined;
