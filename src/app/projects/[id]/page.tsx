@@ -8,84 +8,100 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import Container from "@/components/Container";
-import projects from "@/data/projects.json";
 import { useParams } from "next/navigation";
-import { ExternalLink, Github, GithubIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+// Define TypeScript types
+export interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  liveLink: string;
+}
 
 const ProjectDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // Find the project by ID
-  const project = projects.find(
-    (project) => project.key === parseInt(id as string)
-  );
+  const fetchData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/projects/${id}`);
+      const data = await res.json();
+      setProject(data?.data);
+    } catch (err) {
+      console.error("Error fetching project data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]); // Added dependency
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!project) {
+    return <p>Project not found</p>;
+  }
 
   return (
     <Container>
-      <div className=" my-10">
+      <div className="my-10">
         <Card className="shadow-2xl rounded-lg overflow-hidden">
           <CardHeader className="relative">
             <img
-              src={project.img}
-              alt={project?.title}
+              src={project.image}
+              alt={project.title}
               className="w-full h-96 object-cover rounded-t-lg"
             />
           </CardHeader>
           <CardContent className="p-8">
             <CardTitle className="text-4xl text-gray-800 mb-2">
-              {project?.title}
+              {project.title}
             </CardTitle>
-            <CardDescription className="text-lg text-gray-600 mb-4"></CardDescription>
+            <CardDescription className="text-lg text-gray-700 mb-2">
+              Category: {project.category}
+            </CardDescription>
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              {project?.description}
+              {project.description}{" "}
+              <span>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
+                exercitationem voluptates soluta nostrum ipsum ab sunt ad
+                dolores, voluptatum tempore eum nemo iusto tempora nisi deleniti
+                impedit nesciunt laboriosam commodi aperiam alias vel!
+                Doloremque dolore quis nisi perspiciatis mollitia vitae ipsum
+                asperiores? Eveniet iste aliquid voluptatem quisquam, modi non
+                tempore incidunt quo suscipit quae minus possimus doloremque
+                itaque assumenda, reiciendis aperiam ipsum similique consectetur
+                veniam animi ab reprehenderit commodi. Libero facere quidem
+                perspiciatis minima magnam natus modi itaque voluptatum ab velit
+                delectus, excepturi enim iure assumenda voluptate. Error ab
+                magni ad quod, recusandae voluptates rem facere explicabo
+                molestiae, maiores unde nisi ullam! Excepturi, iste nisi sequi
+                alias impedit nobis ab, nihil quos ipsa et maiores eos soluta a
+                totam, ullam aliquid ad dicta architecto quidem modi doloremque
+                laudantium! Repudiandae exercitationem vero excepturi id,
+                perferendis ratione a in quia ipsa nostrum. Qui iusto officiis
+                minima blanditiis beatae quis suscipit quos tempora.
+              </span>
             </p>
-            <p className=" text-justify text-gray-700">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi
-              assumenda nemo sit debitis, eum labore. Adipisci, labore esse
-              incidunt error excepturi tempora, ducimus expedita delectus
-              voluptate magnam vitae. Pariatur, quaerat praesentium quos sequi,
-              nam dolore quo officiis temporibus tempore quod et sint possimus
-              autem quis nobis modi optio laborum fuga deleniti ut placeat sit.
-              Ut ratione accusantium error illo suscipit molestias. Et nulla,
-              veniam nostrum unde mollitia quaerat quasi accusamus laudantium
-              amet illo voluptates reprehenderit deserunt, eum maxime
-              dignissimos numquam nisi pariatur harum reiciendis quae corrupti
-              facere ratione voluptas placeat. Tempore, reprehenderit quos
-              aspernatur non repudiandae quidem alias deleniti consequatur!
-            </p>
-            <div className="mt-6 flex ">
+
+            <div className="mt-6 flex">
               <Link
+                target="_blank"
                 className="block w-full"
-                target="new"
-                href={project?.client as string}
-              >
-                <Button className="bg-orange-500 w-full">
-                  <GithubIcon className="w-5 h-5" />
-                  Front-end code
-                </Button>
-              </Link>
-            </div>
-            <div className="mt-6 flex ">
-              <Link
-                target="new"
-                className="block w-full"
-                href={project?.server as string}
-              >
-                <Button className="bg-red-500 w-full">
-                  <Github className="w-5 h-5" />
-                  Back-end Code
-                </Button>
-              </Link>
-            </div>
-            <div className="mt-6 flex ">
-              <Link
-                target="new"
-                className="block w-full"
-                href={project?.live as string}
+                href={project.liveLink}
               >
                 <Button className="bg-blue-500 transition-all w-full">
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className="w-5 h-5 mr-2" />
                   Live Demo
                 </Button>
               </Link>

@@ -10,15 +10,21 @@ import {
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+interface Blog {
+  title: string;
+  image: string;
+  category: string;
+  description: string;
+}
+
 export default function BlogDetails() {
   const { id } = useParams();
-  const [blog, setBlog] = useState({ title: "", description: "", img: "" });
+  const [blog, setBlog] = useState<Blog | null>(null); // Initialize with null or empty object
   const [loading, setLoading] = useState(true);
-  console.log(blog);
 
   useEffect(() => {
     if (id) {
-      fetch(`https://blog-project-server1.vercel.app/api/blogs/${id}`)
+      fetch(`http://localhost:5000/api/blogs/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setBlog(data.data);
@@ -37,11 +43,11 @@ export default function BlogDetails() {
 
   return (
     <Container>
-      <div className=" my-10">
+      <div className="my-10">
         <Card className="shadow-2xl rounded-lg overflow-hidden">
           <CardHeader className="relative">
             <img
-              src={blog?.img}
+              src={blog?.image} // Corrected typo here
               alt={blog?.title}
               className="w-full h-96 object-cover rounded-t-lg"
             />
@@ -52,9 +58,12 @@ export default function BlogDetails() {
             </CardTitle>
             <CardDescription className="text-lg text-gray-600 mb-4"></CardDescription>
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              Category: {blog?.category}
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
               {blog?.description}
             </p>
-            <p className=" text-justify text-gray-700">
+            <p className="text-justify text-gray-700">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi
               assumenda nemo sit debitis, eum labore. Adipisci, labore esse
               incidunt error excepturi tempora, ducimus expedita delectus

@@ -1,13 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Banner from "@/components/Banner";
 import Skills from "@/components/Skills";
-import projects from "../data/projects.json";
 import FeaturedCard from "@/components/FeaturedCard";
 import Container from "@/components/Container";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 
-const HomePage = () => {
+export const metadata: Metadata = {
+  title: "Home | Developer Ruhul Amin",
+  description:
+    "Welcome to my portfolio website. Explore my projects, blogs, and contact details.",
+};
+
+const HomePage = async () => {
+  const res = await fetch("http://localhost:5000/api/projects", {
+    next: { revalidate: 5 },
+  });
+
+  const data = await res.json();
+  const projects = data?.data;
+
   return (
     <div>
       <Banner />

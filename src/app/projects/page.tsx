@@ -1,9 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from "@/components/Container";
-import projects from "@/data/projects.json";
 import FeaturedCard from "@/components/FeaturedCard";
+import { Metadata } from "next";
 
-const Projects = () => {
+export const metadata: Metadata = {
+  title: "Projects | Developer Ruhul Amin",
+  description: "Explore my latest projects built with modern web technologies.",
+};
+
+const Projects = async () => {
+  const res = await fetch("http://localhost:5000/api/projects", {
+    next: { revalidate: 5 },
+  });
+
+  const data = await res.json();
+  const projects = data?.data;
   return (
     <Container>
       <h2 className="text-4xl ml-2 my-8 dark:text-white">My Projects</h2>
